@@ -1,0 +1,6 @@
+.idea
+node_modules
+dist
+docs
+example/node_modules
+example/dist

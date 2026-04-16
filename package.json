@@ -1,0 +1,54 @@
+{
+  "name": "@giszhc/vue-page-motion",
+  "version": "0.0.1",
+  "description": "一个轻量、优雅的 Vue3 路由页面过渡动画组件，为单页应用提供流畅的页面切换体验。",
+  "keywords": [
+    "vue",
+    "vue-router",
+    "transition",
+    "animation"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
+  "author": "giszhc",
+  "license": "MIT",
+  "homepage": "https://github.com/giszhc/vue-page-motion#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giszhc/vue-page-motion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/giszhc/vue-page-motion/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite -c vite.example.config.ts",
+    "build": "vite build",
+    "example:dev": "vite -c vite.example.config.ts",
+    "example:build": "vite build -c vite.example.config.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "sass-embedded": "^1.99.0",
+    "vite": "^7.0.6",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

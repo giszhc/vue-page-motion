@@ -74,10 +74,8 @@ const transitionName = computed(() => {
         return transition
     }
 
-    // 4. 默认策略（方向动画）
-    return direction.value === 'forward'
-        ? 'slide-left'
-        : 'slide-right'
+    // 4. 默认：从左向右滑动
+    return 'slide-left'
 })
 
 // 👉 key 策略（支持 meta 控制）
@@ -103,36 +101,25 @@ const cacheKey = (route: any) => {
     transition: opacity 0.3s, transform 0.3s;
 }
 
-/* 👉 forward */
+/* slide-left：从右向左滑 */
 .slide-left-enter-from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(-30px);
 }
 
 .slide-left-leave-to {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(30px);
 }
 
-/* 👉 back */
+/* slide-right：从左向右滑 */
 .slide-right-enter-from {
-    opacity: 0;
-    transform: translateX(-30px);
-}
-
-.slide-right-leave-to {
     opacity: 0;
     transform: translateX(30px);
 }
 
-/* 👉 fallback */
-.fade-transform-enter-active,
-.fade-transform-leave-active {
-    transition: opacity 0.3s;
-}
-
-.fade-transform-enter-from,
-.fade-transform-leave-to {
+.slide-right-leave-to {
     opacity: 0;
+    transform: translateX(-30px);
 }
 </style>

@@ -1,6 +1,9 @@
 /** 路由切换方向 */
 export type Direction = 'forward' | 'back'
 
+/** 内置动画类型 */
+export type BuiltinTransition = 'slide-left' | 'slide-right'
+
 /** TransitionRouterView 组件属性配置 */
 export interface TransitionRouterViewProps {
     /** 过渡模式：'in-out'（新元素先进入）或 'out-in'（旧元素先离开），默认 'out-in' */
@@ -20,9 +23,9 @@ export interface TransitionRouterViewProps {
 
     /** 
      * 过渡动画策略：
-     * - 字符串：固定使用指定的过渡名称
+     * - 字符串：固定使用指定的过渡名称（支持 'slide-left' | 'slide-right' 或自定义）
      * - 函数：根据路由和方向动态返回过渡名称
-     * - undefined：使用默认的左右滑动动画
+     * - undefined：使用默认的 slide-left 动画
      */
-    transition?: string | ((route: any, direction: Direction) => string) | undefined
+    transition?: BuiltinTransition | string | ((route: any, direction: Direction) => BuiltinTransition | string) | undefined
 }

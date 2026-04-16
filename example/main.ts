@@ -213,6 +213,7 @@ const app = createApp({
             <!-- 使用 TransitionRouterView -->
             <TransitionRouterView 
                 :keep-alive="true"
+                transition="slide-left"
                 :include="['Settings']"
             />
         </div>

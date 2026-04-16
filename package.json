@@ -1,6 +1,6 @@
 {
   "name": "@giszhc/vue-page-motion",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "一个轻量、优雅的 Vue3 路由页面过渡动画组件，为单页应用提供流畅的页面切换体验。",
   "keywords": [
     "vue",

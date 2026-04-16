@@ -4,10 +4,9 @@
 
 ## ✨ 特性
 
-* 🎬 **智能方向检测** - 自动识别路由前进/后退，应用不同动画
 * 💾 **KeepAlive 支持** - 可选的组件缓存，保持页面状态
 * 🎯 **灵活动画策略** - 支持固定动画、动态函数、route.meta 配置
-* 📦 **开箱即用** - 内置常用过渡动画，零配置即可使用
+* 📦 **开箱即用** - 内置 slide-left 滑动动画，零配置即可使用
 * 🛡️ **类型安全** - 完整 TypeScript 支持
 * ⚡ **轻量无依赖** - 仅依赖 Vue 和 Vue Router
 
@@ -70,16 +69,45 @@ app.mount('#app')
 
 ## 组件参数
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| mode | 过渡模式，`in-out` 新元素先进入，`out-in` 旧元素先离开 | `'in-out' \| 'out-in'` | `'out-in'` |
-| wrapperClass | 包裹元素的 CSS 类名 | `string` | `'transition-router-view'` |
-| keepAlive | 是否启用 KeepAlive 缓存 | `boolean` | `false` |
-| include | KeepAlive 包含的组件名称 | `string \| RegExp \| Array` | - |
-| exclude | KeepAlive 排除的组件名称 | `string \| RegExp \| Array` | - |
-| transition | 过渡动画策略：字符串（固定动画）、函数（动态返回）、undefined（默认左右滑动） | `string \| function \| undefined` | `undefined` |
+- **mode**：过渡模式，`in-out`（新元素先进入）或 `out-in`（旧元素先离开），默认 `'out-in'`
+- **wrapperClass**：包裹元素的 CSS 类名，默认 `'transition-router-view'`
+- **keepAlive**：是否启用 KeepAlive 缓存，默认 `false`
+- **include**：KeepAlive 包含的组件名称（字符串、正则或数组）
+- **exclude**：KeepAlive 排除的组件名称（字符串、正则或数组）
+- **transition**：过渡动画策略
+  - 字符串：固定使用指定的过渡名称（支持 `'slide-left'` | `'slide-right'` 或自定义）
+  - 函数：根据路由和方向动态返回过渡名称
+  - undefined：使用默认的 `slide-left` 动画
 
-### transition 函数示例
+## 内置动画
+
+组件提供两种内置滑动动画：
+
+- **slide-left**（默认）：从右向左滑动（新页面从右侧滑入）
+- **slide-right**：从左向右滑动（新页面从左侧滑入）
+
+### 使用示例
+
+```vue
+<!-- 默认使用 slide-left -->
+<TransitionRouterView />
+
+<!-- 指定使用 slide-right -->
+<TransitionRouterView transition="slide-right" />
+
+<!-- 使用 route.meta 覆盖 -->
+<!-- 路由配置中设置 meta.transition -->
+```
+
+### transition 高级用法
+
+**1. 字符串策略** - 固定使用某个动画
+
+```vue
+<TransitionRouterView transition="slide-left" />
+```
+
+**2. 函数策略** - 根据路由和方向动态返回动画
 
 ```js
 // 根据路由和方向动态返回动画名称
@@ -101,3 +129,19 @@ const getTransition = (route, direction) => {
   />
 </template>
 ```
+
+**3. route.meta 优先** - 在路由配置中指定
+
+```js
+const routes = [
+  {
+    path: '/special-page',
+    component: SpecialPage,
+    meta: { 
+      transition: 'slide-right' // 该页面使用特殊动画
+    }
+  }
+]
+```
+
+优先级：`route.meta.transition` > `transition` prop > 默认 `slide-left`
